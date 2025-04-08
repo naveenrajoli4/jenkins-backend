@@ -28,40 +28,40 @@ pipeline {
                 }
             }
         }
-        stage('Install Dependencies') {
-            steps {
-                sh """
-                    cd scripts
-                    npm install
-                """
-            }
-        }
+        // stage('Install Dependencies') {
+        //     steps {
+        //         sh """
+        //             cd scripts
+        //             npm install
+        //         """
+        //     }
+        // }
 
-        stage("Docker Build Image") {
-            steps {
-                sh """
-                    docker build -t naveenrajoli/backend:${appversion} .
-                    docker images
-                """
-            }
-        }
+        // stage("Docker Build Image") {
+        //     steps {
+        //         sh """
+        //             docker build -t naveenrajoli/backend:${appversion} .
+        //             docker images
+        //         """
+        //     }
+        // }
 
-        stage('Push docker image to ECR') {
-            steps {
-                withAWS(region: 'us-east-1', credentials: 'aws-cred') {
-                    sh """                   
-                        aws ecr get-login-password --region ${region} | docker login --username AWS --password-stdin ${acc_ID}.dkr.ecr.${region}.amazonaws.com
+        // stage('Push docker image to ECR') {
+        //     steps {
+        //         withAWS(region: 'us-east-1', credentials: 'aws-cred') {
+        //             sh """                   
+        //                 aws ecr get-login-password --region ${region} | docker login --username AWS --password-stdin ${acc_ID}.dkr.ecr.${region}.amazonaws.com
 
-                        docker build -t ${acc_ID}.dkr.ecr.${region}.amazonaws.com/kdp-${project}-${environment}/${component}:${appversion} .
+        //                 docker build -t ${acc_ID}.dkr.ecr.${region}.amazonaws.com/kdp-${project}-${environment}/${component}:${appversion} .
 
-                        docker images
+        //                 docker images
 
-                        docker push ${acc_ID}.dkr.ecr.${region}.amazonaws.com/kdp-${project}-${environment}/${component}:${appversion}                 
+        //                 docker push ${acc_ID}.dkr.ecr.${region}.amazonaws.com/kdp-${project}-${environment}/${component}:${appversion}                 
 
-                    """
-                }
-            }
-        }
+        //             """
+        //         }
+        //     }
+        // }
 
         stage('Deploy Backend') {
             steps {
