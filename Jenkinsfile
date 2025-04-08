@@ -69,7 +69,7 @@ pipeline {
                     sh """
                         cd helm
                         sed -i 's/IMAGEVERSION/${appversion}/g' values.yaml 
-                        helm upgrade --install backend-chart . -n rnk-expense -f values.yaml
+                        kubectl get pods -n rnk-expense
 
                         
                     """
