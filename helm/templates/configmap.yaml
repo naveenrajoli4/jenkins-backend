@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: backendconfigmap
+ namespace: rnk-expense-vol
+data:
+  DB_HOST: {{ .Values.configmap.db_host }}

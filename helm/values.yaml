@@ -1,0 +1,7 @@
+configmap:
+  db_host: mysql-svc
+deployment:
+  imageversion: 1.3
+service:
+  port: 8080
+  targetport: 8080
