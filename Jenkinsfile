@@ -66,13 +66,13 @@ pipeline {
         stage('Deploy Backend') {
             steps {
                 withAWS(region: 'us-east-1', credentials: 'aws-cred') {
-                    script {
-                        sh '''                         
+                    
+                        sh """                        
                             cd helm
                             sed -i "s/IMAGEVERSION/${appversion}/g" values.yaml
                             helm upgrade --install backend-chart . -n rnk-expense -f values.yaml
-                        '''
-                    }
+                        """
+                    
                 }
 
             }
