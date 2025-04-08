@@ -69,7 +69,7 @@ pipeline {
                     sh """
                         cd helm
                         sed -i 's/IMAGEVERSION/${appversion}/g' values.yaml 
-                        helm upgrade --install backend-chart 
+                        helm upgrade --install backend-chart1 . -f values.yaml
                         
                     """
                 }
