@@ -57,7 +57,7 @@ pipeline {
                     
                         docker images
 
-                        docker push ${acc_ID}.dkr.ecr.us-east-1.amazonaws.com/kdp-${project}-${environment}/${component}:${appversion} .
+                        docker push ${acc_ID}.dkr.ecr.us-east-1.amazonaws.com/kdp-${project}-${environment}/${component}:${appversion}
                     }
 
                 """
