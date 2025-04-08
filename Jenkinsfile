@@ -67,6 +67,7 @@ pipeline {
             steps {
                 withAWS(region: 'us-east-1', credentials: 'aws-cred') {
                     sh """
+                        export PATH=\$PATH:/usr/local/bin/
                         aws eks update-kubeconfig --region us-east-1 --name kdp-expense-prod-eks
                         export KUBECONFIG=/home/ec2-user/.kube/config
                         kubectl config get-contexts
