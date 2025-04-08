@@ -1,5 +1,5 @@
 apiVersion: v2
-name: backend-chart
+name: backend
 version: 1.0.0  # chart version
-description: installing mysql
+description: installing backend
 # appVersion: 1.0 # backend app version
