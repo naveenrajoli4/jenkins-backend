@@ -24,4 +24,24 @@ pipeline {
         }
     }
     
+
+
+
+
+
+
+
+
+    post {
+        always{
+            echo 'this will run always'
+            deleteDir()
+        }
+        success{
+            echo 'this will run on success'
+        }
+        failure{
+            echo 'this will run at failure'
+        }
+    }
 }
