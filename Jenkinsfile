@@ -8,7 +8,7 @@ pipeline {
         ansiColor('xterm')
     }
     environment {
-        DEBUG = 'true'
+        // DEBUG = 'true'
         appversion = ''
     }
     
