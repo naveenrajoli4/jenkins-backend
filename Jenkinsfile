@@ -67,6 +67,7 @@ pipeline {
             steps {
                 withAWS(region: 'us-east-1', credentials: 'aws-cred') {
                     sh """
+                        aws eks update-kubeconfig --region us-east-1 --name kdp-expense-prod-eks
                         cd helm
                         sed -i 's/IMAGEVERSION/${appversion}/g' values.yaml 
                         helm upgrade --install backend-chart -n rnk-expense -f values.yaml .
