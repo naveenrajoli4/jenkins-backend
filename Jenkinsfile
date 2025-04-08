@@ -69,9 +69,9 @@ pipeline {
                     sh """
                         aws eks update-kubeconfig --region us-east-1 --name kdp-expense-prod-eks
                         export KUBECONFIG=/home/ec2-user/.kube/config
-                        cd helm
-                        sed -i 's/IMAGEVERSION/${appversion}/g' values.yaml 
-                        helm upgrade --install backend-chart . -n rnk-expense -f values.yaml
+                        kubectl config get-contexts
+                        kubectl get nodes
+                        
                     """
                 }
 
