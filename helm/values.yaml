@@ -1,7 +1,11 @@
 configmap:
-  db_host: mysql-svc
+  db_host: kdp-expense-prod-rds.cde2cce0q6fk.us-east-1.rds.amazonaws.com
 deployment:
-  imageversion: 1.3
+  imageversion: IMAGEVERSION
+  imageURL: 135808959960.dkr.ecr.us-east-1.amazonaws.com/kdp-expense-prod/backend
 service:
   port: 8080
   targetport: 8080
+hpa:
+  cpuUtilization: 20
+

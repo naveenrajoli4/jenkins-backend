@@ -2,28 +2,28 @@ apiVersion: apps/v1
 kind: Deployment
 metadata: 
   name: backend
-  namespace: rnk-expense-vol
+  namespace: rnk-expense
   labels:
     app: backend
     tier: backend
-    project: expense-vol
+    project: expense-jenkins
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: backend
       tier: backend
-      project: expense-vol
+      project: expense-jenkins
   template:
     metadata:
       labels:
         app: backend
         tier: backend
-        project: expense-vol
+        project: expense-jenkins
     spec:
       containers:
       - name: backend
-        image: naveenrajoli/backend:{{ .Values.deployment.imageversion }}
+        image: "{{ .Values.deployment.imageURL }}:{{ .Values.deployment.imageversion }}"
         envFrom:
         - configMapRef:
             name: backendconfigmap
