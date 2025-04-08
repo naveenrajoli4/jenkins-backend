@@ -22,6 +22,23 @@ pipeline {
                 }
             }
         }
+        stage('Install Dependencies') {
+            steps {
+                sh """
+                    cd scripts
+                    npm install
+                """
+            }
+        }
+
+        stage("Docker Build Image") {
+            steps {
+                sh """
+                    docker build -t naveenrajoli/backend:${appversion} .
+                    docker images
+                """
+            }
+        }
 
         
 
