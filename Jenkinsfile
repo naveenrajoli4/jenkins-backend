@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'agent-1-label'
+        label 'agent-2-label'
     }
     options{
         timeout(time: 50, unit: 'MINUTES')
@@ -34,6 +34,19 @@ pipeline {
                     cd scripts
                     npm install
                 """
+            }
+        }
+
+        stage('SonarQube analysis') {
+            environment {
+                SCANNER_HOME = tool 'sonar-6.0' //scanner config
+            }
+            steps {
+                // sonar server injection
+                withSonarQubeEnv('sonar-6.0') {
+                    sh '$SCANNER_HOME/bin/sonar-scanner'
+                    //generic scanner, it automatically understands the language and provide scan results
+                }
             }
         }
 
